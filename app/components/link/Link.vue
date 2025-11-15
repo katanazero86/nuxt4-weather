@@ -13,14 +13,13 @@ const props = withDefaults(
     }
 )
 
-
 </script>
 
 <template>
-  <a href="https://github.com/katanazero86/nuxt4-weather" :target="props.target"
-     class="flex items-center justify-center text-sm font-semibold text-gray-500 hover:bg-gray-100 rounded-sm p-2">
-    <component v-if="props.icon" :is="props.icon" :icon-class="iconClass"/>
-    <span v-if="$slots.default" :class="props.icon && 'ml-2'">
+  <a href="https://github.com/katanazero86/nuxt4-weather" :target="target"
+     class="flex items-center justify-center text-sm font-semibold text-gray-500 hover:bg-gray-100 rounded-sm p-2 dark:hover:bg-slate-700">
+    <component v-if="icon" :is="icon" :icon-class="iconClass"/>
+    <span v-if="$slots.default" :class="icon && 'ml-2'">
       <slot/>
     </span>
   </a>
