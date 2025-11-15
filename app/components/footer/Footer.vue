@@ -1,5 +1,7 @@
 <script setup lang="ts">
 
+import GithubIcon from "~/components/icons/GithubIcon.vue";
+import Link from "~/components/link/Link.vue";
 </script>
 
 <template>
@@ -8,10 +10,7 @@
       Powered by OpenWeather API · © 2025 katanazero86
     </p>
     <div>
-      <a href="https://github.com/katanazero86/nuxt4-weather" target="_blank"
-         class="flex items-center justify-center text-sm text-gray-500 hover:bg-gray-100 rounded-sm p-2">
-        <img src="/icons/github-icon.svg" alt="github" class="inline-block">
-      </a>
+      <Link href="https://github.com/katanazero86" target="_blank" :icon="GithubIcon" />
     </div>
   </footer>
 </template>
