@@ -8,7 +8,7 @@ const props = withDefaults(
       buttonClass?: string
     }>(),
     {
-      buttonClass: 'hover:bg-gray-200 rounded-sm p-2 cursor-pointer'
+      buttonClass: 'hover:bg-gray-100 rounded-sm p-2 cursor-pointer'
     }
 )
 </script>
