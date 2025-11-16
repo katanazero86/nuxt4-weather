@@ -1,3 +1,7 @@
 @import 'tailwindcss';
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+#__nuxt {
+    @apply bg-gray-50 dark:bg-slate-800;
+}

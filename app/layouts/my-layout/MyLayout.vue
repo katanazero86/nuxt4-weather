@@ -1,13 +1,13 @@
 <script setup lang="ts">
-
+import Box from "~/components/box/Box.vue";
 </script>
 
 <template>
-  <div>
     <Header />
-    <slot />
+    <Box box-class="dark:text-white flex-1 max-w-[1024px] w-full m-auto p-4">
+      <slot />
+    </Box>
     <Footer />
-  </div>
 </template>
 
 <style scoped>

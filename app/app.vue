@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="min-h-full flex flex-col">
     <!--    <NuxtRouteAnnouncer />-->
     <!--    <NuxtWelcome />-->
     <!--    <NuxtLayout>-->
@@ -10,3 +10,7 @@
     </NuxtLayout>
   </div>
 </template>
+
+<style scoped>
+
+</style>

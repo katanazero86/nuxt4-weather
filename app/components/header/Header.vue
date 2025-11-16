@@ -10,7 +10,7 @@ const { isDark, toggleDarkMode } = useDarkMode()
 
 <template>
   <header
-      class="h-16 border-b border-gray-200 px-8 py-4 flex items-center justify-between dark:bg-slate-800 dark:text-white">
+      class="h-16 border-b border-gray-300 px-8 py-4 flex items-center justify-between sticky top-0 dark:bg-slate-800 dark:text-white dark:border-gray-500">
     <p class="text-xl font-bold">Nuxt4 Weather</p>
     <div>
       <IconButton v-if="isDark" :icon="MoonIcon" :on-click="toggleDarkMode"/>
