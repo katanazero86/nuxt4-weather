@@ -5,6 +5,7 @@
     <!--    <NuxtLayout>-->
     <!--      <NuxtPage />-->
     <!--    </NuxtLayout>-->
+<!--    <NuxtLoadingIndicator />-->
     <NuxtLayout :name="'my-layout'">
       <NuxtPage/>
     </NuxtLayout>
@@ -14,3 +15,5 @@
 <style scoped>
 
 </style>
+<script setup lang="ts">
+</script>
