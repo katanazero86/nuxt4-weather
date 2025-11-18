@@ -19,6 +19,17 @@ const { data: comments2 } = await useAsyncData(() => fetch(`https://jsonplacehol
   watch: [postId]
 })
 
+// useFetch 도 watch 가능
+// 하지만, 데이터가 업데이트 되지 않는다.
+const { data: comments3 } = await useFetch(`https://jsonplaceholder.typicode.com/comments?postId=${postId.value}`, {
+  watch: [postId]
+})
+
+// 이렇게 함수로 사용하면 된다.
+// const { data: comments3 } = await useFetch(() => `https://jsonplaceholder.typicode.com/comments?postId=${postId.value}`, {
+//   watch: [postId]
+// })
+
 </script>
 
 <template>
@@ -43,6 +54,8 @@ const { data: comments2 } = await useAsyncData(() => fetch(`https://jsonplacehol
     <p>comments: {{ comments }}</p>
     <br/>
     <p>comments2: {{ comments2 }}</p>
+    <br/>
+    <p>comments3: {{ comments3 }}</p>
   </div>
 </template>
 
