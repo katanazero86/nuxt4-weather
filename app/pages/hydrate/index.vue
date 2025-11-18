@@ -10,6 +10,12 @@ Nuxt 에는 서버 컴포넌트 개념은 없음
 특정 생명주기 훅만 실행환경이 다름
 -->
 
+<!--
+응답받은 HTML을 확인하면, entry.async.js 가 type="module" 속성을 가진 스크립트 태그가 존재
+위 스크립트가 로딩 및 실행이 되면서 실제 애플리케이션 초기화과 이뤄지는 entry.js 를 로딩 및 실행
+해당 스크립트를 보면 createApp() 을 통해 Vue 애플리케이션을 생성하고 mount() 를 호출하여 실제 DOM 요소에 렌더링을 함.
+-->
+
 <script setup lang="ts">
 import { onBeforeMount, onMounted } from "vue";
 
