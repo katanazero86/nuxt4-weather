@@ -3,7 +3,7 @@
 // https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
 // appid, lay, lon required
 
-import UseFetchTest2 from "~/pages/use-fetch-test2.vue";
+// import UseFetchTest2 from "~/pages/use-fetch-test2.vue";
 
 function delay(ms: number) {
   return new Promise(resolve => setTimeout(resolve, ms))
