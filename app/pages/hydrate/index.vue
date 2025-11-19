@@ -19,6 +19,13 @@ Nuxt 에는 서버 컴포넌트 개념은 없음
 <script setup lang="ts">
 import { onBeforeMount, onMounted } from "vue";
 
+// https://openweathermap.org/bulk#list
+// https://bulk.openweathermap.org/sample/
+// import cities from '@/assets/json/city.list.json'
+//
+// const kr = cities.filter(item => item.country === 'KR')
+// console.log(kr)
+
 console.log('hydrate') // setup() 는 서버에서 한 번, 클라이언트에서 한 번 총 두 번 실행이 됨
 
 const num = ref(0)
