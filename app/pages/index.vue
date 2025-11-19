@@ -65,11 +65,11 @@ watchEffect(() => {
   if (selectedCity.value !== null) execute()
 })
 
-const getIconUrl = (weatherIcon?: string = '') => {
-  return `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
+const getIconUrl = (weatherIcon: string = '') => {
+  return `https://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
 };
 
-const getTemperature = (temp?: number = 0) => {
+const getTemperature = (temp: number = 0) => {
   return parseFloat((temp - 273.15).toFixed(1));
 };
 
