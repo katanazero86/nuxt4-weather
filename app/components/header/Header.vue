@@ -3,9 +3,17 @@ import MoonIcon from "~/components/icons/MoonIcon.vue";
 import IconButton from "~/components/buttons/IconButton.vue";
 import SunIcon from "~/components/icons/SunIcon.vue";
 import { useDarkMode } from "~/composable/useDarkMode";
+import { useSelectedCity } from "~/composable/useWeather";
 import cityKR from '@/assets/json/city.kr.list.json'
 
 const { isDark, toggleDarkMode } = useDarkMode()
+
+useHead({
+  title: 'Nuxt4 Weather',
+  htmlAttrs: {
+    class: computed(() => (isDark.value ? 'dark' : '')),
+  },
+})
 
 const computedCityKr = computed(() => {
   return cityKR.map(item => ({
@@ -14,8 +22,10 @@ const computedCityKr = computed(() => {
   }))
 })
 
+const selectedCity = useSelectedCity()
+
 const handleSelect = (option: {label: string, value: string}) => {
-  console.log(option)
+  selectedCity.value = cityKR.find(item => item.id === Number(option.value))!
 }
 
 
@@ -27,8 +37,8 @@ const handleSelect = (option: {label: string, value: string}) => {
     <p class="text-xl font-bold">Nuxt4 Weather</p>
     <div class="flex items-center gap-2">
       <Dropdown :options="computedCityKr" placeholder="Select an city" @onSelect="handleSelect" />
-      <IconButton v-if="isDark" :icon="MoonIcon" :on-click="toggleDarkMode"/>
-      <IconButton v-if="!isDark" :icon="SunIcon" :on-click="toggleDarkMode"/>
+      <IconButton v-if="isDark" :icon="MoonIcon" :onClick="toggleDarkMode"/>
+      <IconButton v-if="!isDark" :icon="SunIcon" :onClick="toggleDarkMode"/>
     </div>
   </header>
 </template>

@@ -5,3 +5,7 @@
 #__nuxt {
     @apply bg-gray-50 dark:bg-slate-800;
 }
+
+.weather-list-item {
+    @apply border-t border-t-gray-300 text-gray-800 dark:text-gray-200 py-1 text-sm flex justify-between px-4;
+}
