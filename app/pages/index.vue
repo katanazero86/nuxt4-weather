@@ -58,8 +58,57 @@ const { data, status, pending, error, execute } = useFetch<WeatherData>(() => {
     lon: selectedCity.value?.coord.lon,
     appid: ''
   })),
-  watch: [selectedCity]
+  watch: [selectedCity],
 })
+
+// 이렇게 작성하면 안됌 => setup() 실행 시점에 한번만 평가 되어짐
+// if(status.value === 'error') {
+//   console.log('zz')
+//   throw createError({
+//     statusCode: 401,
+//     data: {
+//       cod: 401,
+//       message: 'Unauthorized'
+//     }
+//   })
+// }
+
+// 이건 동작
+// onMounted(() => {
+//   throw createError({
+//     statusCode: 401,
+//     message: 'Unauthorized',
+//     data: {
+//       cod: 401,
+//       message: 'Unauthorized'
+//     }
+//   })
+// })
+
+watchEffect(() => {
+  if (status.value === 'error') {
+
+    // 리액티브 변화에 따라 트리거가 되는데, 이 시점이 불분명 하여 페이지 전환이 되지 않음.
+    // throw createError({
+    //   statusCode: 401,
+    //   data: {
+    //     cod: 401,
+    //     message: 'Unauthorized'
+    //   }
+    // })
+
+    // 클라이언트 사이드에서는 아래와 같이 처리
+    showError({
+      statusCode: 401,
+      message: 'Unauthorized',
+      data: {
+        cod: 401,
+        message: 'Unauthorized'
+      }
+    })
+  }
+})
+
 
 watchEffect(() => {
   if (selectedCity.value !== null) execute()
