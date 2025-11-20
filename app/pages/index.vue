@@ -132,9 +132,6 @@ const getTemperature = (temp: number = 0) => {
       </div>
     </section>
   </template>
-  <template v-if="error && status === 'error'">
-    {{ status }}
-  </template>
 </template>
 
 <style scoped>
