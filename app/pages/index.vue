@@ -59,6 +59,9 @@ const { data, status, pending, error, execute } = useFetch<WeatherData>(() => {
     appid: ''
   })),
   watch: [selectedCity],
+  onResponseError: (error) => {
+    console.error('Error fetching weather data:', error)
+  }
 })
 
 // 이렇게 작성하면 안됌 => setup() 실행 시점에 한번만 평가 되어짐
@@ -98,20 +101,25 @@ watchEffect(() => {
     // })
 
     // 클라이언트 사이드에서는 아래와 같이 처리
+    // console.log({...error.value})
+
+    const errorData = error.value!.data as  { cod: number, message: string }
     showError({
-      statusCode: 401,
-      message: 'Unauthorized',
+      statusCode: error.value!.statusCode,
+      statusMessage: error.value!.statusMessage,
+      statusText: error.value!.statusText,
+      message: error.value!.message,
       data: {
-        cod: 401,
-        message: 'Unauthorized'
+        ...errorData
       }
     })
+
+    selectedCity.value = null
   }
 })
 
-
 watchEffect(() => {
-  if (selectedCity.value !== null) execute()
+  if(selectedCity.value !== null) execute()
 })
 
 const getIconUrl = (weatherIcon: string = '') => {
