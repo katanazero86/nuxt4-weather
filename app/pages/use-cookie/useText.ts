@@ -1,7 +1,8 @@
 export const useText = () => {
     const text = useCookie('my-text', {
         path: '/',
-        default: () => 'default text'
+        default: () => 'default text',
+        // readonly : true, // read only 설정 기본값은 false
     })
     return { text }
 }
