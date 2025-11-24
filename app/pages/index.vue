@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useCurrentWeather } from "~/composable/apis/useOpenWeather";
+
 type WeatherData = {
   coord: {
     lon: number,
@@ -47,22 +49,23 @@ type WeatherData = {
 import { useSelectedCity } from "~/composable/useWeather";
 
 const selectedCity = useSelectedCity()
+const { data, status, execute, refresh, pending, clear, error } = useCurrentWeather(selectedCity)
 
-const { data, status, pending, error, execute } = useFetch<WeatherData>(() => {
-  if (selectedCity.value === null) return ''
-  return 'https://api.openweathermap.org/data/2.5/weather'
-}, {
-  immediate: false,
-  query: computed(() => ({
-    lat: selectedCity.value?.coord.lat,
-    lon: selectedCity.value?.coord.lon,
-    appid: ''
-  })),
-  watch: [selectedCity],
-  onResponseError: (error) => {
-    console.error('Error fetching weather data:', error)
-  }
-})
+// const { data, status, pending, error, execute } = useFetch<WeatherData>(() => {
+//   if (selectedCity.value === null) return ''
+//   return 'https://api.openweathermap.org/data/2.5/weather'
+// }, {
+//   immediate: false,
+//   query: computed(() => ({
+//     lat: selectedCity.value?.coord.lat,
+//     lon: selectedCity.value?.coord.lon,
+//     appid: ''
+//   })),
+//   watch: [selectedCity],
+//   onResponseError: (error) => {
+//     console.error('Error fetching weather data:', error)
+//   }
+// })
 
 // 이렇게 작성하면 안됌 => setup() 실행 시점에 한번만 평가 되어짐
 // if(status.value === 'error') {
@@ -103,7 +106,7 @@ watchEffect(() => {
     // 클라이언트 사이드에서는 아래와 같이 처리
     // console.log({...error.value})
 
-    const errorData = error.value!.data as  { cod: number, message: string }
+    const errorData = error.value!.data as { cod: number, message: string }
     showError({
       statusCode: error.value!.statusCode,
       statusMessage: error.value!.statusMessage,
@@ -119,7 +122,7 @@ watchEffect(() => {
 })
 
 watchEffect(() => {
-  if(selectedCity.value !== null) execute()
+  if (selectedCity.value !== null) execute()
 })
 
 const getIconUrl = (weatherIcon: string = '') => {
