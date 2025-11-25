@@ -4,7 +4,7 @@ import Box from "~/components/box/Box.vue";
 
 <template>
   <Header/>
-  <Box box-class="dark:text-white flex-1 max-w-[1024px] w-full m-auto p-4">
+  <Box box-class="flex-1 max-w-[1024px] w-full m-auto p-4 bg-gray-50 dark:bg-slate-800 dark:text-white">
     <slot/>
   </Box>
   <Footer/>
