@@ -15,7 +15,7 @@ export const useFiveDayWeatherForecast = (selectedCity: Ref<City | null>) => {
         refresh,
         clear,
         error,
-    } = useFetch<CurrentWeatherResponse>(() => {
+    } = useFetch<FiveDayWeatherForecastResponse>(() => {
         if (selectedCity.value === null) return ''
         return `${API_URL}/forecast`
     }, {
