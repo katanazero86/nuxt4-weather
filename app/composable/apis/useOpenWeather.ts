@@ -1,12 +1,11 @@
 import { computed } from 'vue'
 import type { City } from "~/composable/useWeather";
+import { useConfig } from "~/composable/useConfig";
 
 
 export const useFiveDayWeatherForecast = (selectedCity: Ref<City | null>) => {
-    const runtimeConfig = useRuntimeConfig()
 
-    const API_KEY = runtimeConfig.public.OPEN_WEATHER_API_KEY
-    const API_URL = runtimeConfig.public.OPEN_WEATHER_API_URL
+    const { public: {OPEN_WEATHER_API_KEY: API_KEY, OPEN_WEATHER_API_URL: API_URL} } = useConfig()
 
     const {
         data,
@@ -45,10 +44,7 @@ export const useFiveDayWeatherForecast = (selectedCity: Ref<City | null>) => {
 
 export const useCurrentWeather = (selectedCity: Ref<City | null>) => {
 
-    const runtimeConfig = useRuntimeConfig()
-
-    const API_KEY = runtimeConfig.public.OPEN_WEATHER_API_KEY
-    const API_URL = runtimeConfig.public.OPEN_WEATHER_API_URL
+    const { public: {OPEN_WEATHER_API_KEY: API_KEY, OPEN_WEATHER_API_URL: API_URL} } = useConfig()
 
     const {
         data,
