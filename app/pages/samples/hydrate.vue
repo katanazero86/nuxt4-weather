@@ -1,3 +1,5 @@
+<!-- /samples/hydate -->
+
 <!--
 서버에서 컴포넌트를 컴파일 하고 HTML 생성 및 응답
 CSS, JS 응답
