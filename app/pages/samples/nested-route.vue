@@ -1,3 +1,6 @@
+<!-- /samples/nested-route -->
+<!-- https://nuxt.com/docs/4.x/directory-structure/app/pages#nested-routes -->
+
 <script setup lang="ts">
 
 </script>

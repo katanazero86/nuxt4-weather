@@ -1,3 +1,5 @@
+<!-- /samples/nested-route/list -->
+
 <script setup lang="ts">
 const props = withDefaults(
     defineProps<{ msg?: string }>(),
