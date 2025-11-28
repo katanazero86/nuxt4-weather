@@ -9,7 +9,9 @@
 <template>
   <Suspense>
     <template #default>
+      <!-- Error Boundary -->
       <NuxtErrorBoundary>
+        <!-- nested route -->
         <NuxtPage/>
         <template #error="{ error, clearError }">
           <p>오류가 발생했습니다: {{ error.message }} {{ error.statusCode }}</p>

@@ -1,3 +1,5 @@
+<!-- /samples/use-fetch2 -->
+
 <script setup lang="ts">
 // useFetch Example
 // https://nuxt.com/docs/4.x/api/composables/use-fetch
@@ -43,7 +45,7 @@ console.log(pending.value)
 
 // setup 단계에서 바로 에러 감지 후 throw
 // 이런식으로 처리하는 경우에는 api 호출 해서 상태 변경 시, setup() 가 재실행 되는 것이 아니므로 watch, watchEffect 로 변화를 감지해야 함.
-// 아래 주석을 해제하면, 바운더리에서 잡힘.
+// 아래 주석을 해제하면, 바운더리에서 잡힘. 바운더리가 없으면 /error.vue 로 계속 버블링 되어서 Nuxt 전역 에러 핸들러가 잡음
 // if(import.meta.client && status.value === 'error') {
 //   throw createError({
 //     statusCode: error.value?.statusCode ?? 500,

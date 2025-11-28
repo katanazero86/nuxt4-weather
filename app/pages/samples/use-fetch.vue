@@ -9,6 +9,8 @@
 <template>
   <Suspense>
     <template #default>
+
+      <!-- nested route -->
       <NuxtPage/>
     </template>
     <template #fallback>
