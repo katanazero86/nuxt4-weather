@@ -168,5 +168,22 @@ html.dark #fiveday-weather-forecast-chart .apexcharts-tooltip-title {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
+html.dark #fiveday-weather-forecast-chart .apexcharts-menu {
+  background: rgba(30, 30, 30, 0.92) !important;
+  color: #eee !important;
+  border-radius: 6px !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5) !important;
+  padding: 4px 0 !important;
+}
+
+html.dark #fiveday-weather-forecast-chart .apexcharts-menu-item {
+  color: #eee !important;
+  /* padding: 8px 14px !important; */
+}
+
+html.dark #fiveday-weather-forecast-chart .apexcharts-menu-item:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+}
 
 </style>
