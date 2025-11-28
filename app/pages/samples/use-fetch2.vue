@@ -9,7 +9,13 @@
 <template>
   <Suspense>
     <template #default>
-      <NuxtPage/>
+      <NuxtErrorBoundary>
+        <NuxtPage/>
+        <template #error="{ error, clearError }">
+          <p>오류가 발생했습니다: {{ error.message }} {{ error.statusCode }}</p>
+          <button @click="clearError">오류 지우기</button>
+        </template>
+      </NuxtErrorBoundary>
     </template>
     <template #fallback>
       <h2>loading...</h2>
