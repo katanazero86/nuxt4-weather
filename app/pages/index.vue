@@ -6,6 +6,7 @@ import CurrentWeather from "~/components/weather/currentWeather/CurrentWeather.v
 import FiveDayWeatherForecast from "~/components/weather/fiveDayWeatherForecast/FiveDayWeatherForecast.vue";
 import FiveDayWeatherForecastChart
   from "~/components/weather/fiveDayWeatherForecastChart/FiveDayWeatherForecastChart.vue";
+import LoadingOverlay from "~/components/loadingOverlay/LoadingOverlay.vue";
 
 
 const selectedCity = useSelectedCity()
@@ -120,14 +121,31 @@ watchEffect(() => {
       오른쪽 상단 드롭다운에서 지역을 선택하면 현재 날씨 정보가 이곳에 표시됩니다.
     </p>
   </div>
-  <template v-if="selectedCity !== null && currentWeatherStatus === 'success'">
-    <CurrentWeather :currentWeather="currentWeather!"/>
-  </template>
+  <Transition name="fade" mode="out-in">
+    <LoadingOverlay v-if="currentWeatherPending || fiveDayWeatherForecastPending"/>
+  </Transition>
+  <Transition name="fade" mode="out-in">
+    <template v-if="selectedCity !== null && currentWeatherStatus === 'success'">
+      <CurrentWeather :currentWeather="currentWeather!"/>
+    </template>
+  </Transition>
 
-  <template v-if="selectedCity !== null && fiveDayWeatherForecastStatus === 'success'">
-    <FiveDayWeatherForecast :fiveDayWeatherForecast="fiveDayWeatherForecast!"/>
-  </template>
+  <Transition name="fade" mode="out-in">
+    <template v-if="selectedCity !== null && fiveDayWeatherForecastStatus === 'success'">
+      <FiveDayWeatherForecast :fiveDayWeatherForecast="fiveDayWeatherForecast!"/>
+    </template>
+  </Transition>
 </template>
 
-<style scoped>
+<style>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(12px);
+}
 </style>
