@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { useCount } from "~/pages/use-state/useCount";
+
+import { useCount } from "~/pages/samples/useCount";
 
 const { increment } = useCount()
 
