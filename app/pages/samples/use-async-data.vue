@@ -1,10 +1,14 @@
+<!-- /samples/use-async-data -->
+<!-- https://nuxt.com/docs/4.x/api/composables/use-async-data -->
+
 <script setup lang="ts">
 
 // Reactive Key
-const reactiveKey = ref('test')
-const handleClick = () => reactiveKey.value = 'test2'
+const reactiveKey = ref('1')
+const handleClick = () => reactiveKey.value = '2'
 
-const { data, status, pending, error, refresh, execute, clear } = await useAsyncData(reactiveKey, () => fetch('https://jsonplaceholder.typicode.com/todos/1').then(res => res.json()))
+// key 가 변경되면, 자동으로 페칭
+const { data, status, pending, error, refresh, execute, clear } = await useAsyncData(reactiveKey, () => fetch(`https://jsonplaceholder.typicode.com/todos/${reactiveKey.value}`).then(res => res.json()))
 
 // Watch Param
 // key 를 설정하지 않으면 파일명과 인스턴스 줄 수로 자동으로 생성해줌.
@@ -20,7 +24,7 @@ const { data: comments2 } = await useAsyncData(() => fetch(`https://jsonplacehol
 })
 
 // useFetch 도 watch 가능
-// 하지만, 데이터가 업데이트 되지 않는다.
+// 하지만, 데이터가 업데이트 되지 않는다. = setup() 함수가 처음 실행 될 때, 아래 URL이 고정되기 때문
 const { data: comments3 } = await useFetch(`https://jsonplaceholder.typicode.com/comments?postId=${postId.value}`, {
   watch: [postId]
 })
@@ -49,13 +53,14 @@ const { data: comments3 } = await useFetch(`https://jsonplaceholder.typicode.com
     <p>reactiveKey: {{ reactiveKey }}</p>
     <button class="border p-2 border-amber-500" @click="handleClick">key change</button>
   </div>
+  <br/>
   <div>
     <button class="border p-2 border-amber-500" @click="postId = postId + 1">postId change</button>
     <p>comments: {{ comments }}</p>
     <br/>
     <p>comments2: {{ comments2 }}</p>
     <br/>
-    <p>comments3: {{ comments3 }}</p>
+    <p>comments3(postId 가 변경되어도 그대로): {{ comments3 }}</p>
   </div>
 </template>
 
