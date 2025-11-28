@@ -121,7 +121,7 @@ watchEffect(() => {
       오른쪽 상단 드롭다운에서 지역을 선택하면 현재 날씨 정보가 이곳에 표시됩니다.
     </p>
   </div>
-  <Transition name="fade" mode="out-in">
+  <Transition name="fade-loading" mode="out-in">
     <LoadingOverlay v-if="currentWeatherPending || fiveDayWeatherForecastPending"/>
   </Transition>
   <Transition name="fade" mode="out-in">
@@ -138,14 +138,25 @@ watchEffect(() => {
 </template>
 
 <style>
+.fade-loading-enter-active,
+.fade-loading-leave-active {
+  opacity: 1;
+  transition: opacity 0.25s ease;
+}
+
+.fade-loading-enter-from,
+.fade-loading-leave-to {
+  opacity: 0;
+}
+
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition: opacity 0.2s ease, transform 0.25s ease;
 }
 
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
-  transform: translateY(12px);
+  transform: translateY(6px);
 }
 </style>
