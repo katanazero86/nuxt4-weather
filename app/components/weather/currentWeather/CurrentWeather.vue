@@ -1,13 +1,8 @@
 <script setup lang="ts">
+import { getIconUrl, parseTemperature } from "#shared/utils/open-weather";
+
 const props = defineProps<{currentWeather: CurrentWeatherResponse}>()
 
-const getIconUrl = (weatherIcon: string = '') => {
-  return `https://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
-};
-
-const getTemperature = (temp: number = 0) => {
-  return parseFloat((temp - 273.15).toFixed(1));
-};
 </script>
 
 <template>
@@ -18,7 +13,7 @@ const getTemperature = (temp: number = 0) => {
     <div class="flex flex-col items-center mt-4">
       <img :src="getIconUrl(currentWeather?.weather[0].icon)" :alt="currentWeather?.weather[0].icon" class="h-24 w-24"/>
       <p class="text-lg font-semibold">{{ currentWeather?.weather[0].main }} / <span>{{
-          getTemperature(currentWeather?.main.temp)
+          parseTemperature(currentWeather?.main.temp)
         }} °C</span></p>
     </div>
     <div class="mx-[-16px]">
