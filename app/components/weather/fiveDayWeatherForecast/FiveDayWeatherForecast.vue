@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { formatDateToYYYYMMDD } from "~/utils/format.utils";
 import { getIconUrl, parseTemperature } from "#shared/utils/open-weather";
+import FiveDayWeatherForecastChart
+  from "~/components/weather/fiveDayWeatherForecastChart/FiveDayWeatherForecastChart.vue";
 
 const props = defineProps<{ fiveDayWeatherForecast: FiveDayWeatherForecastResponse }>()
 
@@ -48,7 +50,7 @@ const dtTxtList = computed(() => Object.keys(fiveDataWeatherForecastList.value) 
       </div>
     </div>
   </section>
-
+  <FiveDayWeatherForecastChart :fiveDayWeatherForecast="fiveDayWeatherForecast" />
 </template>
 
 <style scoped>

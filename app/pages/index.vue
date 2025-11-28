@@ -4,6 +4,8 @@ import { useCurrentWeather, useFiveDayWeatherForecast } from "~/composable/apis/
 import { useSelectedCity } from "~/composable/useWeather";
 import CurrentWeather from "~/components/weather/currentWeather/CurrentWeather.vue";
 import FiveDayWeatherForecast from "~/components/weather/fiveDayWeatherForecast/FiveDayWeatherForecast.vue";
+import FiveDayWeatherForecastChart
+  from "~/components/weather/fiveDayWeatherForecastChart/FiveDayWeatherForecastChart.vue";
 
 
 const selectedCity = useSelectedCity()

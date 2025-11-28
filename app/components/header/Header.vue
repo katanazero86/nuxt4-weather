@@ -33,7 +33,7 @@ const handleSelect = (option: {label: string, value: string}) => {
 
 <template>
   <header
-      class="h-16 border-b border-gray-300 px-8 py-4 flex items-center justify-between sticky top-0 dark:bg-slate-800 dark:text-white dark:border-gray-500">
+      class="h-16 border-b border-gray-300 px-8 py-4 flex items-center justify-between sticky top-0 bg-white dark:bg-slate-800 dark:text-white dark:border-gray-500">
     <p class="text-xl font-bold">Nuxt4 Weather</p>
     <div class="flex items-center gap-2">
       <Dropdown :options="computedCityKr" placeholder="Select an city" @onSelect="handleSelect" />
