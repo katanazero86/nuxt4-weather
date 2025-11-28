@@ -1,6 +1,9 @@
+<!-- /samples/use-state -->
+<!-- https://nuxt.com/docs/4.x/api/composables/use-state -->
+
 <script setup lang="ts">
 import UseStateChild from "~/components/samples/useStateChild.vue";
-import { useCount } from "~/pages/use-state/useCount";
+import { useCount } from "./useCount";
 
 const { count } = useCount()
 
