@@ -40,7 +40,7 @@ const computedOptions = computed<ApexOptions>(() => ({
   title: {
     text: 'forecast-wind',
     style: {
-      color: isDark ? '#fff' : '#333',
+      color: isDark.value ? '#fff' : '#333',
     }
   },
   xaxis: {
@@ -49,7 +49,7 @@ const computedOptions = computed<ApexOptions>(() => ({
     labels: {
       style: {
         fontSize: '12px',
-        colors: isDark ? '#fff' : '#333',
+        colors: isDark.value ? '#fff' : '#333',
       },
       formatter: (value) => dayjs(value).format('MM-DD HH:mm'),
     }
