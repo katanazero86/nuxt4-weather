@@ -1,3 +1,21 @@
+# Nuxt4-Weather
+
+---
+
+- Codex 를 활용한 Playwright 
+```
+// input prompts
+- playwright 추가해줘
+- pnpm run test:e2e 로 테스트를 실행하여, 동작하는지 확인해줘.
+- playwright 브라우저 셋 설치를 진행해줘.
+- playwright.config.ts 를 수정해줘. 크로미움 계열의 브라우저만 테스트를 하도록 설정해주고. rpoter 는 html 형식, worker 설정은 CI 환경에서는 2 로컬 에서는 4로 동작하도록 수정해줘.
+- home.spec.ts 에 테스트 추가해줘. - 도시를 선택하면, 콘텐츠가 렌더링 되는지 여부 - 다크모드 클릭 시, 색상이 변경되는지
+- home.spec.ts 에 너무 많은 로직이 포함되어있어. 이것을 POM구조로 작성해줘. pom 은 tests/pom 에 생성 및 작성해주고, mock data 는 test/mock/[페이지별] 로 분리해서 생성 및 작성해줘
+- home.page.ts 에 각 POM 클래스 메서드마다 로케이터들이 있는데, 이것을 클래스 맴버로 정의하고 생성자 메서드에서 초기화 하도록 수정해줘.
+
+```
+
+
 # Nuxt Minimal Starter
 
 Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
