@@ -25,6 +25,9 @@
 ```
 - CI 연동 작업(Github Actions)
 - .github/workflows/playwright.yml 생성 및 작성
+
+1차 실패
+Unable to locate executable file: pnpm. Please verify either the file path exists or the file can be found within a directory specified by the PATH environment variable. Also check the file mode to verify the file is executable.
 ```
 
 - 
