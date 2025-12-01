@@ -12,12 +12,12 @@ test.describe('home tests', () => {
     await homePage.goto()
   })
 
-  test('home renders header and city selector', async () => {
+  test('헤더와 도시 선택기 표시', async () => {
     await expect(homePage.titleLocator).toBeVisible()
     await expect(homePage.cityInputLocator).toBeVisible()
   })
 
-  test('renders weather content after selecting a city', async () => {
+  test('도시 선택 후 날씨 콘텐츠 렌더링', async () => {
     await homePage.selectCity('Tokusan-ri')
     await expect(homePage.weatherHeading('Tokusan-ri', 'KR')).toBeVisible()
     await expect(homePage.weatherListItemLocator).toBeVisible({ timeout: 10_000 })
@@ -25,14 +25,14 @@ test.describe('home tests', () => {
     await expect(homePage.chartLocator).toBeVisible()
   })
 
-  test('toggles dark mode and updates header colors', async () => {
+  test('다크모드 전환 및 헤더 색상 변경', async () => {
     const initialBg = await homePage.getHeaderBackgroundColor()
     await homePage.toggleDarkMode()
     const darkBg = await homePage.getHeaderBackgroundColor()
     expect(darkBg).not.toBe(initialBg)
   })
 
-  test('shows and hides loading overlay when data is delayed', async ({ page }) => {
+  test('지연 시 로딩 오버레이 표시 및 해제', async ({ page }) => {
     await page.unroute('**/weather')
     await page.unroute('**/forecast')
     await homePage.stubWeatherApis(
@@ -48,7 +48,7 @@ test.describe('home tests', () => {
     await expect(loadingOverlay).toBeHidden()
   })
 
-  test('persists dark mode after reload', async ({ context, page }) => {
+  test('새로고침 후 다크모드 유지', async ({ context, page }) => {
     await homePage.toggleDarkMode()
     await page.reload()
     await page.waitForLoadState('networkidle')
