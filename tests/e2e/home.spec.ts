@@ -13,16 +13,22 @@ test.describe('home tests', () => {
   })
 
   test('home renders header and city selector', async () => {
-    await homePage.expectHeaderAndSelectorVisible()
+    await expect(homePage.titleLocator).toBeVisible()
+    await expect(homePage.cityInputLocator).toBeVisible()
   })
 
   test('renders weather content after selecting a city', async () => {
     await homePage.selectCity('Tokusan-ri')
-    await homePage.expectWeatherLoaded('Tokusan-ri', 'KR')
+    await expect(homePage.weatherHeading('Tokusan-ri', 'KR')).toBeVisible()
+    await expect(homePage.weatherListItemLocator).toBeVisible({ timeout: 10_000 })
+    await expect(homePage.forecastSectionLocator).toBeVisible({ timeout: 15_000 })
+    await expect(homePage.chartLocator).toBeVisible()
   })
 
   test('toggles dark mode and updates header colors', async () => {
-    const { initialBg, darkBg } = await homePage.toggleDarkModeAndGetHeaderColors()
+    const initialBg = await homePage.getHeaderBackgroundColor()
+    await homePage.toggleDarkMode()
+    const darkBg = await homePage.getHeaderBackgroundColor()
     expect(darkBg).not.toBe(initialBg)
   })
 })

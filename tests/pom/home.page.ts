@@ -1,4 +1,4 @@
-import { expect, Page, Locator } from '@playwright/test'
+import { Page, Locator } from '@playwright/test'
 
 export class HomePage {
   readonly page: Page
@@ -9,6 +9,7 @@ export class HomePage {
   readonly forecastSectionLocator: Locator
   readonly chartLocator: Locator
   readonly toggleButtonLocator: Locator
+  readonly weatherHeadingText: (city: string, country: string) => Locator
 
   constructor(page: Page) {
     this.page = page
@@ -19,6 +20,8 @@ export class HomePage {
     this.forecastSectionLocator = page.locator('section').filter({ has: page.locator('h3') }).first()
     this.chartLocator = page.locator('#fiveday-weather-forecast-chart')
     this.toggleButtonLocator = this.headerLocator.locator('button').first()
+    this.weatherHeadingText = (city: string, country: string) =>
+      page.getByText(new RegExp(`Weather in ${city}, ${country}`, 'i'))
   }
 
   async stubWeatherApis(currentWeather: unknown, fiveDayForecast: unknown) {
@@ -41,43 +44,25 @@ export class HomePage {
   async goto() {
     await this.page.goto('/')
     await this.page.waitForLoadState('networkidle')
-    await this.page.waitForTimeout(200)
-  }
-
-  async expectHeaderAndSelectorVisible() {
-    await expect(this.titleLocator).toBeVisible()
-    await expect(this.cityInputLocator).toBeVisible()
   }
 
   async selectCity(cityName: string) {
     await this.cityInputLocator.click()
-    await this.page.waitForTimeout(200)
     const option = this.page.locator('ul li', { hasText: new RegExp(cityName, 'i') }).first()
-    await expect(option).toBeVisible({ timeout: 10_000 })
+    await option.waitFor({ state: 'visible' })
     await option.click()
   }
 
-  async expectWeatherLoaded(city: string, country: string) {
-    await expect(this.page.getByText(new RegExp(`Weather in ${city}, ${country}`, 'i'))).toBeVisible()
-    await expect(this.weatherListItemLocator).toBeVisible({ timeout: 10_000 })
-    await expect(this.forecastSectionLocator).toBeVisible({
-      timeout: 15_000,
-    })
-    await expect(this.chartLocator).toBeVisible()
+  weatherHeading(city: string, country: string) {
+    return this.weatherHeadingText(city, country)
   }
 
-  async toggleDarkModeAndGetHeaderColors() {
-    await expect(this.toggleButtonLocator).toBeVisible()
-    await expect(this.toggleButtonLocator).toBeEnabled()
-
-    const initialBg = await this.headerLocator.evaluate(el => getComputedStyle(el).backgroundColor)
-
+  async toggleDarkMode() {
     await this.toggleButtonLocator.click()
-    await expect.poll(async () => this.page.evaluate(() => document.documentElement.classList.contains('dark')), {
-      timeout: 10_000,
-    }).toBe(true)
+    await this.page.waitForFunction(() => document.documentElement.classList.contains('dark'))
+  }
 
-    const darkBg = await this.headerLocator.evaluate(el => getComputedStyle(el).backgroundColor)
-    return { initialBg, darkBg }
+  async getHeaderBackgroundColor() {
+    return this.headerLocator.evaluate(el => getComputedStyle(el).backgroundColor)
   }
 }
