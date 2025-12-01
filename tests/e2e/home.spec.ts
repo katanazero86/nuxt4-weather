@@ -43,7 +43,7 @@ test.describe('home tests', () => {
     await homePage.selectCity('Tokusan-ri')
 
     await expect(homePage.loadingOverlayLocator).toBeVisible()
-    await expect(homePage.weatherHeading('Tokusan-ri', 'KR')).toBeVisible({ timeout: 20_000 })
+    await expect(homePage.weatherHeading('Tokusan-ri', 'KR')).toBeVisible()
     await expect(homePage.loadingOverlayLocator).toBeHidden()
   })
 

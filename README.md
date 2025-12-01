@@ -28,6 +28,11 @@
 
 1차 실패
 Unable to locate executable file: pnpm. Please verify either the file path exists or the file can be found within a directory specified by the PATH environment variable. Also check the file mode to verify the file is executable.
+
+수정 후, 테스트 실패 리포트 확인(github actions 에는 .env 가 없어서 발생하는 에러)
+Secrets and variables -> Actions 설정
+step 에 env 연결
+
 ```
 
 - 
