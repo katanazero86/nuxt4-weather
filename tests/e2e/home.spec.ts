@@ -31,4 +31,32 @@ test.describe('home tests', () => {
     const darkBg = await homePage.getHeaderBackgroundColor()
     expect(darkBg).not.toBe(initialBg)
   })
+
+  test('shows and hides loading overlay when data is delayed', async ({ page }) => {
+    await page.unroute('**/weather')
+    await page.unroute('**/forecast')
+    await homePage.stubWeatherApis(
+      new Promise(resolve => setTimeout(() => resolve(mockCurrentWeather), 800)),
+      new Promise(resolve => setTimeout(() => resolve(mockFiveDayWeatherForecast), 800)),
+    )
+
+    await homePage.selectCity('Tokusan-ri')
+
+    const loadingOverlay = page.locator('.fade-loading-enter-active, .fade-loading-enter-from, .fade-loading-leave-active')
+    await expect(loadingOverlay).toBeVisible()
+    await expect(homePage.weatherHeading('Tokusan-ri', 'KR')).toBeVisible({ timeout: 20_000 })
+    await expect(loadingOverlay).toBeHidden()
+  })
+
+  test('persists dark mode after reload', async ({ context, page }) => {
+    await homePage.toggleDarkMode()
+    await page.reload()
+    await page.waitForLoadState('networkidle')
+
+    await expect(page.locator('html')).toHaveClass(/dark/)
+
+    // ensure data still renders after reload
+    await homePage.selectCity('Tokusan-ri')
+    await expect(homePage.weatherHeading('Tokusan-ri', 'KR')).toBeVisible()
+  })
 })

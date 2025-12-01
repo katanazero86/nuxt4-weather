@@ -48,6 +48,7 @@ export class HomePage {
 
   async selectCity(cityName: string) {
     await this.cityInputLocator.click()
+    await this.page.waitForFunction(() => document.querySelectorAll('ul li').length > 0)
     const option = this.page.locator('ul li', { hasText: new RegExp(cityName, 'i') }).first()
     await option.waitFor({ state: 'visible' })
     await option.click()
