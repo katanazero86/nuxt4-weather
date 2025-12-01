@@ -10,6 +10,7 @@ export class HomePage {
   readonly chartLocator: Locator
   readonly toggleButtonLocator: Locator
   readonly weatherHeadingText: (city: string, country: string) => Locator
+  readonly loadingOverlayLocator: Locator
 
   constructor(page: Page) {
     this.page = page
@@ -22,6 +23,7 @@ export class HomePage {
     this.toggleButtonLocator = this.headerLocator.locator('button').first()
     this.weatherHeadingText = (city: string, country: string) =>
       page.getByText(new RegExp(`Weather in ${city}, ${country}`, 'i'))
+    this.loadingOverlayLocator = page.locator('.fade-loading-enter-active, .fade-loading-enter-from, .fade-loading-leave-active')
   }
 
   async stubWeatherApis(currentWeather: unknown, fiveDayForecast: unknown) {

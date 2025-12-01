@@ -42,10 +42,9 @@ test.describe('home tests', () => {
 
     await homePage.selectCity('Tokusan-ri')
 
-    const loadingOverlay = page.locator('.fade-loading-enter-active, .fade-loading-enter-from, .fade-loading-leave-active')
-    await expect(loadingOverlay).toBeVisible()
+    await expect(homePage.loadingOverlayLocator).toBeVisible()
     await expect(homePage.weatherHeading('Tokusan-ri', 'KR')).toBeVisible({ timeout: 20_000 })
-    await expect(loadingOverlay).toBeHidden()
+    await expect(homePage.loadingOverlayLocator).toBeHidden()
   })
 
   test('새로고침 후 다크모드 유지', async ({ context, page }) => {
