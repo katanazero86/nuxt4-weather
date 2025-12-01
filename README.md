@@ -35,7 +35,10 @@ step 에 env 연결
 
 ```
 
-- 
+- actions CI 에서 테스 통과 시, Vercel 에 배포되도록 하기
+```
+
+```
 
 
 # Nuxt Minimal Starter
