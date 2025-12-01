@@ -21,6 +21,12 @@
 
 ```
 
+- https://playwright.dev/docs/ci-intro
+```
+- CI 연동 작업(Github Actions)
+- .github/workflows/playwright.yml 생성 및 작성
+```
+
 - 
 
 
