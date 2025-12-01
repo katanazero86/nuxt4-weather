@@ -90,16 +90,6 @@
     }
   },
   {
-    "id": 1832617,
-    "name": "Eisen",
-    "state": "",
-    "country": "KR",
-    "coord": {
-      "lon": 128.930832,
-      "lat": 35.967499
-    }
-  },
-  {
     "id": 1832663,
     "name": "Yeongam-guncheong",
     "state": "",
@@ -270,16 +260,6 @@
     }
   },
   {
-    "id": 1833747,
-    "name": "Ulsan",
-    "state": "",
-    "country": "KR",
-    "coord": {
-      "lon": 129.316666,
-      "lat": 35.53722
-    }
-  },
-  {
     "id": 1833763,
     "name": "Ulchin",
     "state": "",
@@ -330,16 +310,6 @@
     }
   },
   {
-    "id": 1835235,
-    "name": "Daejeon",
-    "state": "",
-    "country": "KR",
-    "coord": {
-      "lon": 127.419724,
-      "lat": 36.321388
-    }
-  },
-  {
     "id": 1835327,
     "name": "Daegu",
     "state": "",
@@ -347,16 +317,6 @@
     "coord": {
       "lon": 128.550003,
       "lat": 35.799999
-    }
-  },
-  {
-    "id": 1835329,
-    "name": "Daegu",
-    "state": "",
-    "country": "KR",
-    "coord": {
-      "lon": 128.59111,
-      "lat": 35.870281
     }
   },
   {
@@ -437,16 +397,6 @@
     "coord": {
       "lon": 127,
       "lat": 37.583328
-    }
-  },
-  {
-    "id": 1835848,
-    "name": "Seoul",
-    "state": "",
-    "country": "KR",
-    "coord": {
-      "lon": 126.977829,
-      "lat": 37.56826
     }
   },
   {
@@ -617,16 +567,6 @@
     "coord": {
       "lon": 129.050003,
       "lat": 35.133331
-    }
-  },
-  {
-    "id": 1838524,
-    "name": "Busan",
-    "state": "",
-    "country": "KR",
-    "coord": {
-      "lon": 129.040283,
-      "lat": 35.102779
     }
   },
   {
@@ -917,26 +857,6 @@
     "coord": {
       "lon": 126.916672,
       "lat": 35.166672
-    }
-  },
-  {
-    "id": 1841810,
-    "name": "Gwangju",
-    "state": "",
-    "country": "KR",
-    "coord": {
-      "lon": 127.257217,
-      "lat": 37.41
-    }
-  },
-  {
-    "id": 1841811,
-    "name": "Gwangju",
-    "state": "",
-    "country": "KR",
-    "coord": {
-      "lon": 126.915558,
-      "lat": 35.15472
     }
   },
   {
@@ -1250,16 +1170,6 @@
     }
   },
   {
-    "id": 1843564,
-    "name": "Incheon",
-    "state": "",
-    "country": "KR",
-    "coord": {
-      "lon": 126.731667,
-      "lat": 37.453609
-    }
-  },
-  {
     "id": 1843585,
     "name": "Imsil",
     "state": "",
@@ -1357,16 +1267,6 @@
     "coord": {
       "lon": 127.885696,
       "lat": 37.691799
-    }
-  },
-  {
-    "id": 1844192,
-    "name": "Hongch’ŏn",
-    "state": "",
-    "country": "KR",
-    "coord": {
-      "lon": 127.23333,
-      "lat": 36.900002
     }
   },
   {
@@ -1817,16 +1717,6 @@
     "coord": {
       "lon": 129.106934,
       "lat": 37.543892
-    }
-  },
-  {
-    "id": 1894079,
-    "name": "Imsil",
-    "state": "",
-    "country": "KR",
-    "coord": {
-      "lon": 127.89463,
-      "lat": 35.749802
     }
   },
   {
