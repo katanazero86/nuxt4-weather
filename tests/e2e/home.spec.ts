@@ -20,8 +20,8 @@ test.describe('home tests', () => {
   test('도시 선택 후 날씨 콘텐츠 렌더링', async () => {
     await homePage.selectCity('Tokusan-ri')
     await expect(homePage.weatherHeading('Tokusan-ri', 'KR')).toBeVisible()
-    await expect(homePage.weatherListItemLocator).toBeVisible({ timeout: 10_000 })
-    await expect(homePage.forecastSectionLocator).toBeVisible({ timeout: 15_000 })
+    await expect(homePage.weatherListItemLocator).toBeVisible()
+    await expect(homePage.forecastSectionLocator).toBeVisible()
     await expect(homePage.chartLocator).toBeVisible()
   })
 
