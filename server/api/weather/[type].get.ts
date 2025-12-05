@@ -4,10 +4,13 @@ export default cachedEventHandler(async (event) => {
     const { lat, lon } = getQuery(event)
     const cfg = useRuntimeConfig()
 
+    setResponseHeader(event, 'Cache-Control', 'public, max-age=300, s-maxage=300, stale-while-revalidate=300')
+
     return $fetch(`${cfg.public.OPEN_WEATHER_API_URL}/${type}`, {
         query: { lat, lon, appid: cfg.public.OPEN_WEATHER_API_KEY }
     })
 }, {
     maxAge: 300, // 초 단위 TTL, 5분
+    staleMaxAge: 300,
     swr: true,   // 만료 후 백그라운드 갱신(stale-while-revalidate)
 })
