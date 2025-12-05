@@ -50,5 +50,5 @@ jobs:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          vercel-args: '--production'  # 프로덕션 배포!
+          vercel-args: '--prod'  # 프로덕션 배포!
           github-comment: true  # PR에 프리뷰 링크 댓글 추가
