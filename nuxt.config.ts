@@ -21,8 +21,8 @@ export default defineNuxtConfig({
         server: 'server',
         // 클라이언트 측은, public 와 app 키만 접근 가능(useRuntimeConfig())
         public: {
-            OPEN_WEATHER_API_URL: process.env.OPEN_WEATHER_API_URL,
-            OPEN_WEATHER_API_KEY: process.env.OPEN_WEATHER_API_KEY,
+            OPEN_WEATHER_API_URL: process.env.OPEN_WEATHER_API_URL ?? '',
+            OPEN_WEATHER_API_KEY: process.env.OPEN_WEATHER_API_KEY ?? '',
             test: 'test'
         }
     }
