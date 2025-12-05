@@ -14,7 +14,6 @@ const { isDark } = useDarkMode()
 
 const statusCode = props.error?.statusCode
 const statusMessage = props.error?.statusMessage
-const message = (props.error?.data as { message: string; cod: number })?.message
 
 function handleClick(e: Event) {
   // showError() createError() 를 해줬다면 clearError() 를 통해 전역 에러 상태를 해제해야함.
@@ -28,13 +27,13 @@ function handleClick(e: Event) {
     <div class="w-full max-w-[650px] px-2 py-4 shadow-sm rounded-lg bg-gray-100 dark:bg-slate-700">
       <h1 class="text-6xl text-center font-semibold dark:text-white">{{ statusCode }}</h1>
       <p class="text-3xl text-center dark:text-white">
-        {{ statusMessage }}.
+        {{ statusMessage }}
       </p>
       <div class="text-center text-gray-600 dark:text-gray-300 mt-4">
-        <p>
-          {{ message }}
+        <p class="font-semibold">
+          {{ error }}
         </p>
-        <p class="mt-2 font-semibold">
+        <p class="mt-2">
           If the problem persists, please try again later.
         </p>
       </div>
