@@ -10,6 +10,16 @@
     }
   },
   {
+    "id": 77,
+    "name": "Tokusan-ri(cached)",
+    "state": "",
+    "country": "KR",
+    "coord": {
+      "lon": 128.699997,
+      "lat": 35.133331
+    }
+  },
+  {
     "id": 1832015,
     "name": "Heunghae",
     "state": "",

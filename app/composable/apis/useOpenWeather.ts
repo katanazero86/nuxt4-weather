@@ -4,7 +4,7 @@ import { useConfig } from "~/composable/useConfig";
 
 export const useFiveDayWeatherForecast = (selectedCity: Ref<City | null>) => {
 
-    const { public: {OPEN_WEATHER_API_KEY: API_KEY, OPEN_WEATHER_API_URL: API_URL} } = useConfig()
+    const { public: { OPEN_WEATHER_API_KEY: API_KEY, OPEN_WEATHER_API_URL: API_URL } } = useConfig()
 
     const {
         data,
@@ -43,7 +43,42 @@ export const useFiveDayWeatherForecast = (selectedCity: Ref<City | null>) => {
 
 export const useCurrentWeather = (selectedCity: Ref<City | null>) => {
 
-    const { public: {OPEN_WEATHER_API_KEY: API_KEY, OPEN_WEATHER_API_URL: API_URL} } = useConfig()
+    const { public: { OPEN_WEATHER_API_KEY: API_KEY, OPEN_WEATHER_API_URL: API_URL } } = useConfig()
+
+    // const {
+    //     data,
+    //     status,
+    //     pending,
+    //     execute,
+    //     refresh,
+    //     clear,
+    //     error,
+    // } = useFetch<CurrentWeatherResponse>(() => {
+    //     if (selectedCity.value === null) return ''
+    //     return `${API_URL}/weather`
+    // }, {
+    //     immediate: false,
+    //     query: computed(() => ({
+    //         lat: selectedCity.value?.coord.lat,
+    //         lon: selectedCity.value?.coord.lon,
+    //         appid: API_KEY
+    //     })),
+    //     watch: [selectedCity],
+    //     onResponseError: (error) => {
+    //         console.error('Error fetching weather data:', error)
+    //     }
+    // })
+
+    const url = computed(() =>
+        selectedCity.value
+            ? `/api/weather/weather`
+            : '',
+    )
+
+    // const key = computed(() =>
+    //     selectedCity.value ? `weather-${selectedCity.value.coord.lat}-${selectedCity.value.coord.lon}` : '',
+    // )
+
 
     const {
         data,
@@ -53,22 +88,17 @@ export const useCurrentWeather = (selectedCity: Ref<City | null>) => {
         refresh,
         clear,
         error,
-    } = useFetch<CurrentWeatherResponse>(() => {
-        if (selectedCity.value === null) return ''
-        return `${API_URL}/weather`
-    }, {
+    } = useFetch<CurrentWeatherResponse>(url, {
         immediate: false,
         query: computed(() => ({
             lat: selectedCity.value?.coord.lat,
             lon: selectedCity.value?.coord.lon,
-            appid: API_KEY
         })),
         watch: [selectedCity],
         onResponseError: (error) => {
             console.error('Error fetching weather data:', error)
         }
     })
-
 
     return {
         data,
