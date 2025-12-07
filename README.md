@@ -2,6 +2,47 @@
 
 ---
 
+- 프로젝트 구조
+
+```
+nuxt4-weather
+├── .github
+├── app
+│   ├── assets
+│   ├── components
+│   ├── composable
+│   ├── layouts
+│   ├── pages
+│   ├── plugins
+│   └── utils
+├── public
+├── server
+│   ├── api
+├── shared
+│   ├── types
+│   └── utils
+└── tests
+
+```
+**.github**: GitHub Actions 워크플로우 및 GitHub 관련 설정 파일을 관리합니다.   
+**app**: Nuxt4 애플리케이션 컴포넌트 및 코드들을 모아두고 관리합니다.
+**app/assets**:   
+**app/components**:   
+**app/composable**:   
+**app/layouts**:   
+**app/pages**:   
+**app/plugins**:   
+**app/utils**:   
+**public**: 빌드 과정에서 변환 없이 그대로 제공되는 정적 리소스를 보관합니다.
+favicon, robots.txt, 아이콘 등의 파일이 이곳에 위치합니다.     
+**server**: Nuxt 서버 환경에서만 실행되는 코드를 관리합니다.
+API 라우트(/server/api)와 서버 미들웨어, 서버 전용 유틸 등이 포함됩니다.    
+**shared**: 서버와 클라이언트 양쪽에서 사용되는 타입 및 공용 유틸을 모아둔 공간입니다.
+shared/types, shared/utils 경로는 Nuxt에서 자동으로 import됩니다.   
+**tests**: Playwright 기반 E2E 테스트 코드를 저장하는 폴더
+
+
+
 - Codex 를 활용한 Playwright 
 ```
 // input prompts
@@ -37,9 +78,13 @@ step 에 env 연결
 
 - actions CI 에서 테스 통과 시, Vercel 에 배포되도록 하기
 ```
+- Vercel 에서 자동 배포 비활성화
+- github actions 에서 workflow 에 Vercel 배포 관련 설정 추가
+- vercel-token, vercel-org-id, vercel-project-id 가 필요하며, 이는 Vercel 에서 확인 및 해당 값은 Secrets and variables - actions 에서 등록하여 관리
 
 ```
 
+---
 
 # Nuxt Minimal Starter
 
