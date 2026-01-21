@@ -12,5 +12,5 @@ export default cachedEventHandler(async (event) => {
 }, {
     maxAge: 300, // 초 단위 TTL, 5분
     staleMaxAge: 300,
-    swr: true,   // 만료 후 백그라운드 갱신(stale-while-revalidate)
+    swr: true, // 만료 후 백그라운드 갱신(stale-while-revalidate)
 })
