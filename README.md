@@ -13,6 +13,21 @@ Vercel에 배포되어 있고, GitHub Actions로 CI 이후 자동 배포되도�
   - CI: GitHub Actions
   - 배포: Vercel (CI 이후 자동 배포)
 
+- CI/CD 흐름
+  1. PR/푸시
+  2. GitHub Actions에서 CI(테스트/빌드) 실행
+  3. CI 통과 시 Vercel 배포
+  4. 배포 완료 후 프로덕션 사이트 반영
+
+- 주요 컴포넌트
+  - `Header`, `Footer`: 전역 레이아웃 상단/하단 UI
+  - `CurrentWeather`: 현재 날씨 정보 표시
+  - `FiveDayWeatherForecast`: 5일 예보 카드 목록
+  - `FiveDayWeatherForecastChart`: 5일 예보(풍량) 차트 시각화
+  - `LoadingOverlay`: 데이터 로딩 상태 표시
+  - `Dropdown`, `IconButton`, `Box`, `Link`: 공용 UI 컴포넌트
+  - `SunIcon`, `MoonIcon`, `GithubIcon` 등: 아이콘 컴포넌트
+
 - 프로젝트 구조
 
 ```
@@ -99,76 +114,35 @@ step 에 env 연결
 
 # Nuxt Minimal Starter
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+- Nuxt 공식 문서: https://nuxt.com/docs/getting-started/introduction
+- Vue 공식 문서: https://vuejs.org/guide/introduction.html
 
-## Setup
+## Setup (pnpm)
 
-Make sure to install dependencies:
+의존성 설치:
 
 ```bash
-# npm
-npm install
-
-# pnpm
 pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
+## Development Server (pnpm)
 
-Start the development server on `http://localhost:3000`:
+개발 서버 실행 (`http://localhost:3000`):
 
 ```bash
-# npm
-npm run dev
-
-# pnpm
 pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+## Production (pnpm)
 
-Build the application for production:
+프로덕션 빌드:
 
 ```bash
-# npm
-npm run build
-
-# pnpm
 pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
 ```
 
-Locally preview production build:
+로컬 프리뷰:
 
 ```bash
-# npm
-npm run preview
-
-# pnpm
 pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
 ```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
