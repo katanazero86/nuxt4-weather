@@ -2,6 +2,17 @@
 
 ---
 
+- 프로젝트 개요
+
+Nuxt와 Vue를 오랜만에 다시 써보고 싶어서 진행한 토이 프로젝트입니다.  
+Vercel에 배포되어 있고, GitHub Actions로 CI 이후 자동 배포되도록 구성했습니다.
+
+- 배포 주소: https://nuxt4-weather.vercel.app/
+
+- 주요 설정
+  - CI: GitHub Actions
+  - 배포: Vercel (CI 이후 자동 배포)
+
 - 프로젝트 구조
 
 ```
@@ -26,13 +37,13 @@ nuxt4-weather
 ```
 **.github**: GitHub Actions 워크플로우 및 GitHub 관련 설정 파일을 관리합니다.   
 **app**: Nuxt4 애플리케이션 컴포넌트 및 코드들을 모아두고 관리합니다.
-**app/assets**:   
-**app/components**:   
-**app/composable**:   
-**app/layouts**:   
-**app/pages**:   
-**app/plugins**:   
-**app/utils**:   
+**app/assets**: 전역 스타일, 이미지 등 정적 리소스를 관리합니다.   
+**app/components**: 재사용 가능한 UI 컴포넌트를 모아둡니다.   
+**app/composable**: Vue/Nuxt composable 로직(상태, 훅)을 모아둡니다.   
+**app/layouts**: 페이지 공통 레이아웃을 정의합니다.   
+**app/pages**: 라우팅되는 페이지 컴포넌트를 관리합니다.   
+**app/plugins**: Nuxt 플러그인 등록 및 초기화를 관리합니다.   
+**app/utils**: 공통 유틸리티 함수 모음입니다.   
 **public**: 빌드 과정에서 변환 없이 그대로 제공되는 정적 리소스를 보관합니다.
 favicon, robots.txt, 아이콘 등의 파일이 이곳에 위치합니다.     
 **server**: Nuxt 서버 환경에서만 실행되는 코드를 관리합니다.
@@ -41,12 +52,12 @@ API 라우트(/server/api)와 서버 미들웨어, 서버 전용 유틸 등이 �
 shared/types, shared/utils 경로는 Nuxt에서 자동으로 import됩니다.   
 **tests**: Playwright 기반 E2E 테스트 코드를 저장하는 폴더
 
-
+---
 
 - Codex 를 활용한 Playwright 
 ```
 // input prompts
-- playwright 추가해줘
+- playwright 추가해줘.
 - pnpm run test:e2e 로 테스트를 실행하여, 동작하는지 확인해줘.
 - playwright 브라우저 셋 설치를 진행해줘.
 - playwright.config.ts 를 수정해줘. 크로미움 계열의 브라우저만 테스트를 하도록 설정해주고. rpoter 는 html 형식, worker 설정은 CI 환경에서는 2 로컬 에서는 4로 동작하도록 수정해줘.
@@ -76,7 +87,7 @@ step 에 env 연결
 
 ```
 
-- actions CI 에서 테스 통과 시, Vercel 에 배포되도록 하기
+- actions CI 에서 테스트 통과 시, Vercel 에 배포되도록 하기
 ```
 - Vercel 에서 자동 배포 비활성화
 - github actions 에서 workflow 에 Vercel 배포 관련 설정 추가
