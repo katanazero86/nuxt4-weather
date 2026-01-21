@@ -19,6 +19,25 @@ Vercel에 배포되어 있고, GitHub Actions로 CI 이후 자동 배포되도�
   3. CI 통과 시 Vercel 배포
   4. 배포 완료 후 프로덕션 사이트 반영
 
+- 전체 워크플로 구조
+```
+Feature 브랜치 작업
+    ↓
+PR 생성
+    ↓
+preview.yml 실행
+    ├─ Playwright Tests ✅
+    └─ Vercel Preview 배포 
+    ↓
+코드 리뷰 & 승인
+    ↓
+main 브랜치에 Merge
+    ↓
+production.yml 실행
+    ├─ Playwright Tests ✅(현재는 주석 처리.)
+    └─ Vercel Production 배포
+```
+
 - 주요 컴포넌트
   - `Header`, `Footer`: 전역 레이아웃 상단/하단 UI
   - `CurrentWeather`: 현재 날씨 정보 표시
