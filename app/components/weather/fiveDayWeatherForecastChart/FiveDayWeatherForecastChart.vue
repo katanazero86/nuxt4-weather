@@ -1,20 +1,27 @@
 <script setup lang="ts">
 import dayjs from 'dayjs'
-import type { ApexOptions } from "apexcharts";
-import { useDarkMode } from "~/composable/useDarkMode";
+import type { ApexAxisChartSeries, ApexOptions } from 'apexcharts'
+import { useDarkMode } from '~/composable/useDarkMode'
 
 const props = defineProps<{ fiveDayWeatherForecast: FiveDayWeatherForecastResponse }>()
 
 const { isDark } = useDarkMode()
 
-const series: ApexNonAxisChartSeries = [
+const targetCategories = computed(() => props.fiveDayWeatherForecast.list.map(({ dt_txt }) => dt_txt))
+
+const series = computed<ApexAxisChartSeries>(() => [
   {
     name: 'series',
     data: props.fiveDayWeatherForecast.list.map(({ wind: { speed } }) => speed),
   },
-];
+])
 
-const targetCategories = props.fiveDayWeatherForecast.list.map(({ dt_txt }) => dt_txt)
+const chartKey = computed(() => {
+  const cityId = props.fiveDayWeatherForecast.city.id
+  const categoriesKey = targetCategories.value.join('|')
+
+  return `${cityId}:${categoriesKey}`
+})
 
 const computedOptions = computed<ApexOptions>(() => ({
   chart: {
@@ -30,111 +37,50 @@ const computedOptions = computed<ApexOptions>(() => ({
   },
   colors: isDark.value ? ['#4dabf7'] : ['#1e88e5'],
   grid: {
-    // borderColor: isDark.value ? '#444' : '#e0e0e0',
     yaxis: {
       lines: {
         show: false,
-      }
-    }
+      },
+    },
   },
   title: {
     text: 'forecast-wind',
     style: {
       color: isDark.value ? '#fff' : '#333',
-    }
+    },
   },
   xaxis: {
-    // type: 'datetime',
-    categories: targetCategories,
+    categories: targetCategories.value,
     labels: {
       style: {
         fontSize: '12px',
         colors: isDark.value ? '#fff' : '#333',
       },
       formatter: (value) => dayjs(value).format('MM-DD HH:mm'),
-    }
+    },
   },
   yaxis: {
     labels: {
       style: {
         colors: isDark.value ? '#ccc' : '#333',
-      }
-    }
+      },
+    },
   },
   tooltip: {
     x: {
-      // format: 'MM-dd HH:mm',
       formatter: (value, opts) => {
-        const raw = targetCategories[opts.dataPointIndex]
+        const raw = targetCategories.value[opts.dataPointIndex]
         return dayjs(raw).format('YYYY-MM-DD HH:mm')
       },
     },
     y: {
       formatter: (value) => `${value} m/s`,
       title: {
-        formatter: (seriesName) => '풍속:'
-      }
-    }
+        formatter: () => '풍속:',
+      },
+    },
   },
 }))
-
-// const options: ApexOptions = {
-//   chart: {
-//     id: 'fiveday-weather-forecast-chart',
-//     type: 'line',
-//     zoom: {
-//       enabled: false,
-//     },
-//     animations: {
-//       enabled: true,
-//     },
-//     background: isDark.value ? '#1e1e1e' : '#ffffff',
-//   },
-//   colors: isDark.value ? ['#4dabf7'] : ['#1e88e5'],
-//   grid: {
-//     borderColor: isDark.value ? '#444' : '#e0e0e0',
-//   },
-//   title: {
-//     text: 'forecast-wind',
-//     style: {
-//       color: isDark ? '#fff' : '#333',
-//     }
-//   },
-//   xaxis: {
-//     // type: 'datetime',
-//     categories: targetCategories,
-//     labels: {
-//       style: {
-//         fontSize: '12px',
-//         colors: isDark ? '#fff' : '#333',
-//       },
-//       formatter: (value) => dayjs(value).format('MM-DD HH:mm'),
-//     }
-//   },
-//   yaxis: {
-//     labels: {
-//       style: {
-//         colors: isDark.value ? '#ccc' : '#333',
-//       }
-//     }
-//   },
-//   tooltip: {
-//     x: {
-//       // format: 'MM-dd HH:mm',
-//       formatter: (value, opts) => {
-//         const raw = targetCategories[opts.dataPointIndex]
-//         return dayjs(raw).format('YYYY-MM-DD HH:mm')
-//       },
-//     },
-//     y: {
-//       formatter: (value) => `${value} m/s`,
-//       title: {
-//         formatter: (seriesName) => '풍속:'
-//       }
-//     }
-//   },
-// }
-
 </script>
 
 <template>
@@ -142,18 +88,18 @@ const computedOptions = computed<ApexOptions>(() => ({
     <ClientOnly>
       <div id="fiveday-weather-forecast-chart">
         <apexchart
-            width="100%"
-            height="500"
-            :options="computedOptions"
-            :series="series"
-        ></apexchart>
+          :key="chartKey"
+          width="100%"
+          height="500"
+          :options="computedOptions"
+          :series="series"
+        />
       </div>
     </ClientOnly>
   </section>
 </template>
 
 <style>
-
 html.dark #fiveday-weather-forecast-chart .apexcharts-tooltip {
   background: rgba(30, 30, 30, 0.95) !important;
   color: #e5e5e5 !important;
@@ -185,5 +131,4 @@ html.dark #fiveday-weather-forecast-chart .apexcharts-menu-item {
 html.dark #fiveday-weather-forecast-chart .apexcharts-menu-item:hover {
   background: rgba(255, 255, 255, 0.08) !important;
 }
-
 </style>
