@@ -14,29 +14,33 @@ Vercel에 배포되어 있고, GitHub Actions로 CI 이후 자동 배포되도�
   - 배포: Vercel (CI 이후 자동 배포)
 
 - CI/CD 흐름
-  1. PR/푸시
-  2. GitHub Actions에서 CI(테스트/빌드) 실행
-  3. CI 통과 시 Vercel 배포
-  4. 배포 완료 후 프로덕션 사이트 반영
+
+  | 이벤트 | 실행 워크플로 | 현재 동작 |
+  | --- | --- | --- |
+  | PR 생성/업데이트 (`main`, `master` 대상) | `preview.yml` | Playwright 테스트 실행 후, 성공한 경우에만 Vercel Preview 배포 |
+  | `main` / `master` 푸시 | `production.yml` | 현재는 테스트 없이 바로 Vercel Production 배포 |
 
 - 전체 워크플로 구조
 ```
+[Preview 흐름]
 Feature 브랜치 작업
     ↓
-PR 생성
+PR 생성 또는 업데이트
     ↓
 preview.yml 실행
     ├─ Playwright Tests ✅
-    └─ Vercel Preview 배포 
-    ↓
-코드 리뷰 & 승인
-    ↓
-main 브랜치에 Merge
+    └─ 테스트 성공 시 Vercel Preview 배포
+
+[Production 흐름]
+main / master 브랜치에 push
     ↓
 production.yml 실행
-    ├─ Playwright Tests ✅(현재는 주석 처리.)
     └─ Vercel Production 배포
 ```
+
+> 참고: `production.yml`에는 Playwright 테스트 job 및 `needs: playwright-tests` 설정이 현재 주석 처리되어 있어,
+> 프로덕션 배포 전에 테스트가 실행되지 않습니다. 추후 테스트를 다시 활성화할 수 있지만, 현재 확정된 동작은
+> "테스트 없이 프로덕션 배포"입니다.
 
 - 주요 컴포넌트
   - `Header`, `Footer`: 전역 레이아웃 상단/하단 UI
